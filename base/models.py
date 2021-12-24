@@ -8,6 +8,6 @@ class Elements(models.Model):
     group = models.IntegerField(blank=True,null=True)
     period = models.IntegerField(blank=True,null=True)
     atomic_weight = models.FloatField(blank=False,null=False)
-    melting_point = models.IntegerField(blank=False,null=False)
-    boiling_point = models.IntegerField(blank=False,null=False)
+    melting_point = models.CharField(max_length=15,blank=False,null=False)
+    boiling_point = models.CharField(max_length=15,blank=False,null=False)
     electron_configuration = models.CharField(max_length=250,blank=False,null=False)
