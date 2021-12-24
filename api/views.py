@@ -6,4 +6,8 @@ class ElementsList(generics.ListCreateAPIView):
     queryset = Elements.objects.all()
     serializer_class = ElementsSerializer
 
+class ElementsDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Elements.objects.all()
+    serializer_class = ElementsSerializer
+
 
