@@ -11,3 +11,6 @@ class Elements(models.Model):
     melting_point = models.CharField(max_length=15,blank=False,null=False)
     boiling_point = models.CharField(max_length=15,blank=False,null=False)
     electron_configuration = models.CharField(max_length=250,blank=True,null=True)
+
+    def __str__(self):
+        return self.name
