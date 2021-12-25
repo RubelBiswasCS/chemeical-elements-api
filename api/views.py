@@ -8,7 +8,7 @@ class ElementsList(generics.ListCreateAPIView):
     queryset = Elements.objects.all()
     serializer_class = ElementsSerializer
     filter_backends = [DjangoFilterBackend,filters.OrderingFilter,filters.SearchFilter]
-    filterset_fields = ['group',]
+    filterset_fields = ['group','period',]
     ordering_fields = ['group','atomic_number','atomic_weight',]
     search_fields = ['=name','=symbol',]
 
