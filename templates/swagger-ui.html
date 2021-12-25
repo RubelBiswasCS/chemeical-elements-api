@@ -1,28 +1,61 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Swagger</title>
+    <title>Docs</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="//unpkg.com/swagger-ui-dist@3/swagger-ui.css" />
   </head>
   <body>
     <div id="swagger-ui"></div>
+    <!-- additionals -->
+
+    
     <script src="//unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
     <script>
-    const ui = SwaggerUIBundle({
-        url: "{% url schema_url %}",
-        dom_id: '#swagger-ui',
-        presets: [
-          SwaggerUIBundle.presets.apis,
-          SwaggerUIBundle.SwaggerUIStandalonePreset
-        ],
-        layout: "BaseLayout",
-        requestInterceptor: (request) => {
-          request.headers['X-CSRFToken'] = "{{ csrf_token }}"
-          return request;
-        }
-      })
+      const ui = SwaggerUIBundle({
+          url: "{% url schema_url %}",
+          dom_id: '#swagger-ui',
+          presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIBundle.SwaggerUIStandalonePreset
+          ],
+          layout: "BaseLayout",
+          requestInterceptor: (request) => {
+            request.headers['X-CSRFToken'] = "{{ csrf_token }}"
+            return request;
+          }
+        })
+    </script>
+    <script>
+        const extraHtml = `
+              <div class="swagger-ui wrapper">
+                <section class="block col-12 block-desktop col-12-desktop">
+                    <section class="models is-open">
+                      <h4>Additional Notes</h4>
+                      <div class="no-margin">
+                        <div class="model-container">
+                          <ul>
+                            <li>
+                              <span>Available filter fields: </span> group, period
+                            </li>
+                            <li>
+                              <span>Available search options: </span> name, symbol
+                            </li>
+                            <li>
+                              <span>Available ordering options: </span> group, atomic_number, atomic_weight
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </section>
+                </section>
+              </div>`;
+      var div = document.createElement("div");
+      div.className = "swagger-ui";
+      div.innerHTML = extraHtml;
+      var root = document.getElementById('swagger-ui');
+      root.appendChild(div);
     </script>
   </body>
 </html>
